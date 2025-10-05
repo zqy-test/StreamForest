@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> StreamForest </title>
+
+  <link rel="icon" href="./static/images/videochat_logo.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+  <link rel="stylesheet" href="./static/css/video-player.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+
+  <script src="./static/js/leaderboard_testmini.js"></script>  
+  
+  <style>
+    .no-sort {
+        cursor: default;
+        pointer-events: none;
+        background-image: none !important; /* Remove the sort arrow */
+    }
+  </style>
+
+</head>
+<body>
+
+  
+<!-- 上方导航栏：more research-->
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <p style="font-size:18px; display: inline; margin-right: -2px; margin-top: 12px;">🔥</p>
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://github.com/OpenGVLab/VideoChat-Flash">
+            <b>VideoChat-Flash</b> 
+          </a>
+          <!-- <a class="navbar-item" href="https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models">
+            <b>Awesome-MLLM</b> 
+          </a> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-bold">
+            <!--<img src="static/images/videochat_logo.png" style="width:1.6em;vertical-align: middle" alt="Logo"/> -->
+            <span class="StreamForest" style="vertical-align: middle">StreamForest</span>
+            </h1>
+            <h2 class="subtitle is-3 publication-subtitle", style="margin-bottom: 20px;">
+              NIPS 2025<sup style="color:#f60303;">(Spotlight)</sup>
+            </h2>
+          <h2 class="subtitle is-3 publication-subtitle", style="margin-bottom: 20px;">
+            StreamForest: Efficient Online Video Understanding with Persistent Event Memory
+          </h2>
+          <div class="is-size-5 publication-authors">
+            <!-- Paper authors -->
+            <a href="https://lanxingxuan.github.io/" style="color:#008AD7;font-weight:normal;">Xiangyu Zeng</a><sup style="color:#6fbf73;">1</sup><sup style="color:#fd3be0;">☨</sup></sup>,</span>
+            <span style="color:#008AD7;font-weight:normal;">Kefan Qiu</span><sup style="color:#6fbf73;">1</sup><sup style="color:#fd3be0;">☨</sup></sup>,</span>
+            <a href="https://happyzqy.github.io/" style="color:#008AD7;font-weight:normal;">Qingyu Zhang</a><sup style="color:#6fbf73;">1</sup><sup style="color:#fd3be0;">☨</sup></sup>,</span>
+            <a href="https://leexinhao.github.io/" style="color:#008AD7;font-weight:normal;">Xinhao Li</a><sup style="color:#6fbf73;">1</sup></sup>,</span>
+            <span style="color:#008AD7;font-weight:normal;">Jing Wang</span><sup style="color:#6fbf73;">1</sup></sup>,</span>
+            <span style="color:#008AD7;font-weight:normal;">Jiaxin Li</span><sup style="color:#6fbf73;">1</sup></sup>,</span>
+            <span style="color:#008AD7;font-weight:normal;">Ziang Yan</span><sup style="color:#ffac33;">3,</sup><sup style="color:#ed4b82;">2</sup></sup>,</span>
+            <span style="color:#008AD7;font-weight:normal;">Kun Tian</span><sup style="color:#212a21;">4</sup></sup>,</span>
+            <span style="color:#008AD7;font-weight:normal;">Meng Tian</span><sup style="color:#7733ff;">5</sup></sup>,</span>
+            <span style="color:#008AD7;font-weight:normal;">Xinhai Zhao</span><sup style="color:#212a21;">4</sup></sup>,</span>
+            <span style="color:#008AD7;font-weight:normal;">Yi Wang</span><sup style="color:#ed4b82;">2</sup></sup>
+            <span style="color:#008AD7;font-weight:normal;">Limin Wang</span><sup style="color:#6fbf73;">1</sup></sup>
+            
+          </div>
+
+          <br>
+
+          <div class="is-size-4 publication-authors">
+            <span class="author-block"><sup style="color:#6fbf73;">1</sup>Nanjing University</span>&nbsp;
+            <span class="author-block"><sup style="color:#ed4b82;">2</sup>Shanghai AI Laboratory</span>
+            <span class="author-block"><sup style="color:#ffac33;">3</sup>Zhejiang University</span>
+            <span class="author-block"><sup style="color:#212a21;">4</sup>Noah’s Ark Lab, Huawei</span>
+            <span class="author-block"><sup style="color:#7733ff;">5</sup>Yinwang Intelligent Tech.</span>
+
+          </div>
+
+          <div class="is-size-9 publication-authors">
+            <!-- <span class="author-block"><sup>*</sup>Work done at Meta</span>&nbsp; -->
+            <span class="author-block"><sup style="color:#fd3be0;">☨</sup>Co-author</span>
+          </div>
+
+          <br>
+
+        <span class="link-block">
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2509.24871"
+                   class="external-link button is-normal is-rounded is-dark">
+                <!-- <a href="https://lupantech.github.io/papers/arxiv23_mathvista.pdf"
+                   class="external-link button is-normal is-rounded is-dark"> -->
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/collections/MCG-NJU/streamforest-and-odvbench-68da5d8a88f3cf453bca0e09"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <p style="font-size:18px">📊</p>
+                  </span>
+                  <span>Model</span>
+                  </a>
+              </span>
+              <!--Benchmark Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/collections/MCG-NJU/streamforest-and-odvbench-68da5d8a88f3cf453bca0e09"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">📊</p>
+                  </span>
+                  <span>Benchmark</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/MCG-NJU/StreamForest"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/collections/MCG-NJU/streamforest-and-odvbench-68da5d8a88f3cf453bca0e09"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <!-- <i class="far fa-images"></i> -->
+                      <p style="font-size:18px">📊</p>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+              <!-- Leaderboard Link. -->
+              <span class="link-block">
+                <a href="#leaderboard"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <p style="font-size:18px">🏆</p>
+                  </span>
+                  <span>Leaderboard</span>
+                </a>
+              </span>
+              <!-- Video Explorer. -->
+              <!-- <span class="link-block">
+                <a href="explorer.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <p style="font-size:18px">▶️</p>
+                  </span>
+                  <span>Explorer</span>
+                </a>
+              </span> -->
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container" style="margin-bottom: 2vh;">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          Multimodal Large Language Models (MLLMs) have recently achieved remarkable progress in video understanding. However, their effectiveness in real-time streaming scenarios remains limited due to storage constraints of historical visual features and insufficient real-time spatiotemporal reasoning. To address these challenges, we propose StreamForest, a novel architecture specifically designed for streaming video understanding. Central to StreamForest is the Persistent Event Memory Forest, a memory mechanism that adaptively organizes video frames into multiple event-level tree structures. This process is guided by penalty functions based on temporal distance, content similarity, and merge frequency, enabling efficient long-term memory retention under limited computational resources. To enhance real-time perception, we introduce a Fine-grained Spatiotemporal Window, which captures detailed short-term visual cues to improve current scene perception. Additionally, we present OnlineIT, an instruction-tuning dataset tailored for streaming video tasks. OnlineIT significantly boosts MLLM performance in both real-time perception and future prediction. To evaluate generalization in practical applications, we introduce ODV-Bench, a new benchmark focused on real-time streaming video understanding in autonomous driving scenarios. Experimental results demonstrate that StreamForest achieves the state-of-the-art performance, with accuracies of 77.3% on StreamingBench, 60.5% on OVBench, and 55.6% on OVO-Bench. Inparticular, even under extreme visual token compression (limited to 1024 tokens), the model retains 96.8% of its average accuracy in eight benchmarks relative to the default setting. These results underscore the robustness, efficiency, and generalizability of StreamForest for streaming video understanding.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    updateRowNumbers();
+    document.querySelector("#results").addEventListener("click", updateRowNumbers);
+  });
+
+  function updateRowNumbers() {
+    const rows = document.querySelectorAll("#results tbody tr");
+    rows.forEach((row, index) => {
+      row.querySelector("td").innerText = index + 1;
+    });
+  }
+</script>
+
+<section class="section">
+  <div class="container">
+    
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered content">
+
+        <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
+        <div class="content">
+          <div class="video-duration">
+            <p>
+              <strong>FP:</strong>Future Prediction &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>AA:</strong> Action Anticipation &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>GSP:</strong> Goal/Step Prediction  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>MP:</strong> Movement Prediction
+            </p>
+            <p>
+              <strong>THV:</strong> Temporal Hallucination
+              Verification  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>AP:</strong> Action Persistence  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>SV:</strong> Step Verification  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>OV:</strong> Object Presence 
+            </p>
+            <p>
+              <strong>PM:</strong> Past Memory  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>AR:</strong> Action Retrieval  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>PR:</strong> Procedure Recall &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>TR:</strong> Trajectory Retrieval
+            </p>
+            <p>
+              <strong>SP:</strong> Spatio Perception  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>AL:</strong> Action Location &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>OP:</strong> Object Position 
+            </p>
+            <p>
+              <strong>STP:</strong> Spatio-Temporal Perception &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>AT:</strong> Action Trajectory &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>OT:</strong> Object  Trajectory
+            </p>
+            <p>
+              <strong>TP:</strong> Temporal Perception
+              <strong>AS:</strong> Action Sequence  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>SL:</strong> Step Localization &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <strong>OES:</strong> Object Existence State 
+            </p>
+            <p>
+              By default, this leaderboard is sorted by overall Accuracy scores. To view other sorted results, please click on the corresponding cell.
+            </p>
+          </div>
+
+          <table class="js-sort-table" id="results" style="margin-left: auto; margin-right: auto;">
+            <thead>
+              <tr>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 50px;" data-js-sort-colNum="none"><strong>#</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 200px;" data-js-sort-colNum="none"><strong>Task Name<br>Subset Name</strong></th>
+                <th rowspan="2" class="no-sort" style="vertical-align: middle; width: 50px;" data-order="asc" data-js-sort-colNum="none"><strong>Size</strong></th>
+                <th rowspan="2" style="vertical-align: middle; width: 60px;" data-js-sort-colNum="3" class="js-sort-desc"><strong style="color: #22a56e;">AVG</strong></th>
+                <th colspan="3" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="6"><strong>FP</strong></th>
+                <th colspan="3" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="9"><strong>THV</strong></th>
+                <th colspan="3" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="12"><strong>PM</strong></th>
+                <th colspan="2" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="14"><strong>SP</strong></th> 
+                <th colspan="2" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="16"><strong>STP</strong></th> 
+                <th colspan="3" style="vertical-align: middle; width: 300px;" data-js-sort-colNum="19"><strong>TP</strong></th>
+              </tr>
+              <tr>
+                <th data-js-sort-colNum="4"><strong>AA</strong></th>
+                <th data-js-sort-colNum="5"><strong>GSP</strong></th>
+                <th data-js-sort-colNum="6"><strong>MP</strong></th>
+                <th data-js-sort-colNum="7"><strong>AP</strong></th>
+                <th data-js-sort-colNum="8"><strong>SV</strong></th>
+                <th data-js-sort-colNum="9"><strong>OP</strong></th>
+                <th data-js-sort-colNum="10"><strong>AR</strong></th>
+                <th data-js-sort-colNum="11"><strong>PR</strong></th>
+                <th data-js-sort-colNum="12"><strong>TR</strong></th>
+                <th data-js-sort-colNum="13"><strong>AL</strong></th>
+                <th data-js-sort-colNum="14"><strong>OP</strong></th>
+                <th data-js-sort-colNum="15"><strong>AT</strong></th>
+                <th data-js-sort-colNum="16"><strong>OT</strong></th>
+                <th data-js-sort-colNum="17"><strong>AS</strong></th>
+                <th data-js-sort-colNum="18"><strong>SL</strong></th>
+                <th data-js-sort-colNum="19"><strong>OES</strong></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf" class="ext-link" style="font-size: 16px; margin-left: 5px;">Gemini-1.5-Flash
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">Google</p>
+                </a> </b></td>
+                <td style="vertical-align: middle;">- </td>
+                <td style="vertical-align: middle;">50.7 </td>
+                <td style="vertical-align: middle;"><b>71.4</b></td>
+                <td style="vertical-align: middle;">53.6</td>
+                <td style="vertical-align: middle;">21.9</td>
+                <td style="vertical-align: middle;">56.5</td>
+                <td style="vertical-align: middle;"><b>60.8</b></td>
+                <td style="vertical-align: middle;">40.6</td>
+                <td style="vertical-align: middle;">36.7</td>
+                <td style="vertical-align: middle;">47.9</td>
+                <td style="vertical-align: middle;">62.5</td>
+                <td style="vertical-align: middle;">32.3</td>
+                <td style="vertical-align: middle;">37.5</td>
+                <td style="vertical-align: middle;">87.0</td>
+                <td style="vertical-align: middle;">50.0</td>
+                <td style="vertical-align: middle;"><b>83.3</b></td>
+                <td style="vertical-align: middle;">22.3</td>
+                <td style="vertical-align: middle;">46.9</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/OpenGVLab/InternVL" class="ext-link" style="font-size: 16px; margin-left: 5px;">InternVL2
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">Shanghai AI Lab</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">7B </td>
+                <td style="vertical-align: middle;">48.7</td>
+                <td style="vertical-align: middle;">52.6</td>
+                <td style="vertical-align: middle;">60.2</td>
+                <td style="vertical-align: middle;">27.6</td>
+                <td style="vertical-align: middle;">57.5</td>
+                <td style="vertical-align: middle;">52.0</td>
+                <td style="vertical-align: middle;">58.5</td>
+                <td style="vertical-align: middle;">38.8</td>
+                <td style="vertical-align: middle;"><b>67.1</b></td>
+                <td style="vertical-align: middle;">58.3</td>
+                <td style="vertical-align: middle;">38.1</td>
+                <td style="vertical-align: middle;">31.3</td>
+                <td style="vertical-align: middle;">87.4</td>
+                <td style="vertical-align: middle;">37.0</td>
+                <td style="vertical-align: middle;">75.4</td>
+                <td style="vertical-align: middle;">31.4</td>
+                <td style="vertical-align: middle;">5.9</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/OpenGVLab/InternVL" class="ext-link" style="font-size: 16px; margin-left: 5px;">InternVL2
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">Shanghai AI Lab</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">4B </td>
+                <td style="vertical-align: middle;">44.1</td>
+                <td style="vertical-align: middle;">57.7</td>
+                <td style="vertical-align: middle;">57.0</td>
+                <td style="vertical-align: middle;">14.4</td>
+                <td style="vertical-align: middle;">59.2</td>
+                <td style="vertical-align: middle;">49.4</td>
+                <td style="vertical-align: middle;">60.0</td>
+                <td style="vertical-align: middle;">30.3</td>
+                <td style="vertical-align: middle;">61.8</td>
+                <td style="vertical-align: middle;">46.3</td>
+                <td style="vertical-align: middle;">30.9</td>
+                <td style="vertical-align: middle;">20.1</td>
+                <td style="vertical-align: middle;">83.0</td>
+                <td style="vertical-align: middle;">32.3</td>
+                <td style="vertical-align: middle;">70.7</td>
+                <td style="vertical-align: middle;">29.4</td>
+                <td style="vertical-align: middle;">3.4</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://github.com/dvlab-research/LLaMA-VID" class="ext-link" style="font-size: 16px; margin-left: 5px;">LLaMA-VID</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">CUHK </p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B </td>
+                <td style="vertical-align: middle;">41.9</td>
+                <td style="vertical-align: middle;">43.6</td>
+                <td style="vertical-align: middle;">50.9</td>
+                <td style="vertical-align: middle;">19.6</td>
+                <td style="vertical-align: middle;">64.0</td>
+                <td style="vertical-align: middle;">47.5</td>
+                <td style="vertical-align: middle;">46.8</td>
+                <td style="vertical-align: middle;">29.4</td>
+                <td style="vertical-align: middle;">48.9</td>
+                <td style="vertical-align: middle;">51.2</td>
+                <td style="vertical-align: middle;">31.9</td>
+                <td style="vertical-align: middle;">11.2</td>
+                <td style="vertical-align: middle;">75.7</td>
+                <td style="vertical-align: middle;">24.8</td>
+                <td style="vertical-align: middle;">59.1</td>
+                <td style="vertical-align: middle;">26.0</td>
+                <td style="vertical-align: middle;">40.0</td>
+ 
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://arxiv.org/abs/2501.00584v1" class="ext-link" style="font-size: 16px; margin-left: 5px;">LLaVA-OneVision</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">Bytedance</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B </td>
+                <td style="vertical-align: middle;">49.5</td>
+                <td style="vertical-align: middle;">68.0</td>
+                <td style="vertical-align: middle;">62.7</td>
+                <td style="vertical-align: middle;"><b>35.9</b></td>
+                <td style="vertical-align: middle;">58.4</td>
+                <td style="vertical-align: middle;">50.3</td>
+                <td style="vertical-align: middle;">46.5</td>
+                <td style="vertical-align: middle;">29.4</td>
+                <td style="vertical-align: middle;">60.7</td>
+                <td style="vertical-align: middle;">58.0</td>
+                <td style="vertical-align: middle;">43.1</td>
+                <td style="vertical-align: middle;">14.2</td>
+                <td style="vertical-align: middle;">86.5</td>
+                <td style="vertical-align: middle;">49.7</td>
+                <td style="vertical-align: middle;">70.7</td>
+                <td style="vertical-align: middle;">28.1</td>
+                <td style="vertical-align: middle;">30.2</td>                                         
+              </tr>
+             
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/EvolvingLMMs-Lab/LongVA" class="ext-link" style="font-size: 16px; margin-left: 5px;">LongVA
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">LMMs-Lab</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">43.6</td>    
+                <td style="vertical-align: middle;">64.1</td>
+                <td style="vertical-align: middle;">56.5</td>
+                <td style="vertical-align: middle;">29.5</td>
+                <td style="vertical-align: middle;">54.9</td>
+                <td style="vertical-align: middle;">51.9</td>
+                <td style="vertical-align: middle;">34.8</td>
+                <td style="vertical-align: middle;">35.3</td>
+                <td style="vertical-align: middle;">55.6</td>
+                <td style="vertical-align: middle;">57.7</td>
+                <td style="vertical-align: middle;">31.6</td>
+                <td style="vertical-align: middle;">3.4</td>
+                <td style="vertical-align: middle;">67.4</td>
+                <td style="vertical-align: middle;">44.7</td>
+                <td style="vertical-align: middle;">80.0</td>
+                <td style="vertical-align: middle;">26.7</td>
+                <td style="vertical-align: middle;">4.0</td>
+                                 
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/OpenBMB/MiniCPM-V" class="ext-link" style="font-size: 16px; margin-left: 5px;">MiniCPM-V 2.6
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">OpenBMB</p>
+                </a> </b></td>
+                <td style="vertical-align: middle;">7B </td>
+                <td style="vertical-align: middle;">39.1</td>
+                <td style="vertical-align: middle;">33.3</td>
+                <td style="vertical-align: middle;">35.9</td>
+                <td style="vertical-align: middle;">15.0</td>
+                <td style="vertical-align: middle;">59.2</td>
+                <td style="vertical-align: middle;">50.8</td>
+                <td style="vertical-align: middle;">55.1</td>
+                <td style="vertical-align: middle;">25.0</td>
+                <td style="vertical-align: middle;">37.4</td>
+                <td style="vertical-align: middle;">41.7</td>
+                <td style="vertical-align: middle;">26.6</td>
+                <td style="vertical-align: middle;">11.8</td>
+                <td style="vertical-align: middle;"><b>98.3</b></td>
+                <td style="vertical-align: middle;">36.3</td>
+                <td style="vertical-align: middle;">66.1</td>
+                <td style="vertical-align: middle;">26.4</td>
+                <td style="vertical-align: middle;">6.2</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://huggingface.co/spaces/Qwen/Qwen2-VL" class="ext-link" style="font-size: 16px; margin-left: 5px;">Qwen2-VL
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">Alibaba</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">7B </td>
+                <td style="vertical-align: middle;">49.7</td>
+                <td style="vertical-align: middle;">60.3</td>
+                <td style="vertical-align: middle;"><b>66.1</b></td>
+                <td style="vertical-align: middle;">22.1</td>
+                <td style="vertical-align: middle;">54.9</td>
+                <td style="vertical-align: middle;">51.5</td>
+                <td style="vertical-align: middle;">51.1</td>
+                <td style="vertical-align: middle;">37.8</td>
+                <td style="vertical-align: middle;">64.4</td>
+                <td style="vertical-align: middle;">69.3</td>
+                <td style="vertical-align: middle;">35.3</td>
+                <td style="vertical-align: middle;">28.5</td>
+                <td style="vertical-align: middle;">97.0</td>
+                <td style="vertical-align: middle;">49.4</td>
+                <td style="vertical-align: middle;">65.1</td>
+                <td style="vertical-align: middle;">30.8</td>
+                <td style="vertical-align: middle;">11.7</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;">
+                  <b class="">
+                    <a href="https://github.com/NVlabs/LITA" class="ext-link" style="font-size: 16px; margin-left: 5px;">LITA</a>
+                    <p style="font-size: 12px; margin-left: 5px; color: #858383;">NVIDIA</p>
+                  </b>
+                </td>
+                <td style="vertical-align: middle;">7B </td>
+                <td style="vertical-align: middle;">20.4</td>
+                <td style="vertical-align: middle;">19.2</td>
+                <td style="vertical-align: middle;">24.5</td>
+                <td style="vertical-align: middle;">19.9</td>
+                <td style="vertical-align: middle;">40.8</td>
+                <td style="vertical-align: middle;">48.9</td>
+                <td style="vertical-align: middle;">24.9</td>
+                <td style="vertical-align: middle;">3.1</td>
+                <td style="vertical-align: middle;">27.3</td>
+                <td style="vertical-align: middle;">6.4</td>
+                <td style="vertical-align: middle;">6.9</td>
+                <td style="vertical-align: middle;">14.6</td>
+                <td style="vertical-align: middle;">35.2</td>
+                <td style="vertical-align: middle;">23.9</td>
+                <td style="vertical-align: middle;">27.4</td>
+                <td style="vertical-align: middle;">0.5</td>
+                <td style="vertical-align: middle;">3.4</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/RenShuhuai-Andy/TimeChat" class="ext-link" style="font-size: 16px; margin-left: 5px;">TimeChat
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">PKU</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">12.8</td>
+                <td style="vertical-align: middle;">7.7</td>
+                <td style="vertical-align: middle;">15.3</td>
+                <td style="vertical-align: middle;">18.7</td>
+                <td style="vertical-align: middle;">20.6</td>
+                <td style="vertical-align: middle;">15.7</td>
+                <td style="vertical-align: middle;">11.7</td>
+                <td style="vertical-align: middle;">9.1</td>
+                <td style="vertical-align: middle;">14.7</td>
+                <td style="vertical-align: middle;">9.8</td>
+                <td style="vertical-align: middle;">7.5</td>
+                <td style="vertical-align: middle;">19.5</td>
+                <td style="vertical-align: middle;">13.9</td>
+                <td style="vertical-align: middle;">10.3</td>
+                <td style="vertical-align: middle;">9.3</td>
+                <td style="vertical-align: middle;">10.1</td>
+                <td style="vertical-align: middle;">10.8</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/huangb23/VTimeLLM" class="ext-link" style="font-size: 16px; margin-left: 5px;">VTimeLLM
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">THU</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">33.1</td>
+                <td style="vertical-align: middle;">37.2</td>
+                <td style="vertical-align: middle;">23.4</td>
+                <td style="vertical-align: middle;">15.0</td>
+                <td style="vertical-align: middle;"><b>64.8</b></td>
+                <td style="vertical-align: middle;">43.8</td>
+                <td style="vertical-align: middle;">53.2</td>
+                <td style="vertical-align: middle;">25.9</td>
+                <td style="vertical-align: middle;">38.8</td>
+                <td style="vertical-align: middle;">32.5</td>
+                <td style="vertical-align: middle;">25.9</td>
+                <td style="vertical-align: middle;">20.4</td>
+                <td style="vertical-align: middle;">40.9</td>
+                <td style="vertical-align: middle;">6.8</td>
+                <td style="vertical-align: middle;">48.4</td>
+                <td style="vertical-align: middle;"><b>43.5</b></td>
+                <td style="vertical-align: middle;">8.6</td>                     
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/MCG-NJU/VideoChat-Online" class="ext-link" style="font-size: 16px; margin-left: 5px;">VideoChat-Online
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">Ours</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">4B</td>
+                <td style="vertical-align: middle;">53.9</td>
+                <td style="vertical-align: middle;">56.4</td>
+                <td style="vertical-align: middle;">63.0</td>
+                <td style="vertical-align: middle;">15.6</td>
+                <td style="vertical-align: middle;">57.1</td>
+                <td style="vertical-align: middle;">57.9</td>
+                <td style="vertical-align: middle;">61.9</td>
+                <td style="vertical-align: middle;">39.1</td>
+                <td style="vertical-align: middle;">54.2</td>
+                <td style="vertical-align: middle;"><b>73.9</b></td>
+                <td style="vertical-align: middle;">41.3</td>
+                <td style="vertical-align: middle;">29.7</td>
+                <td style="vertical-align: middle;">92.2</td>
+                <td style="vertical-align: middle;"><b>53.1</b></td>
+                <td style="vertical-align: middle;">69.8</td>
+                <td style="vertical-align: middle;">27.3</td>
+                <td style="vertical-align: middle;">69.9</td>
+                
+              </tr>
+
+
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/showlab/videollm-online" class="ext-link" style="font-size: 16px; margin-left: 5px;">&#x2B50; VideoLLM-Online
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">NUS</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">9.6</td>
+                <td style="vertical-align: middle;">0.0</td>
+                <td style="vertical-align: middle;">1.8</td>
+                <td style="vertical-align: middle;">20.9</td>
+                <td style="vertical-align: middle;">5.2</td>
+                <td style="vertical-align: middle;">5.9</td>
+                <td style="vertical-align: middle;">32.6</td>
+                <td style="vertical-align: middle;">0.0</td>
+                <td style="vertical-align: middle;">2.3</td>
+                <td style="vertical-align: middle;">26.7</td>
+                <td style="vertical-align: middle;">0.6</td>
+                <td style="vertical-align: middle;">26.6</td>
+                <td style="vertical-align: middle;">0.9</td>
+                <td style="vertical-align: middle;">19.9</td>
+                <td style="vertical-align: middle;">0.9</td>
+                <td style="vertical-align: middle;">1.7</td>
+                <td style="vertical-align: middle;">8.3</td>
+                
+              </tr>
+              
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/rese1f/MovieChat" class="ext-link" style="font-size: 16px; margin-left: 5px;">&#x2B50; MovieChat
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">ZJU</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">30.9</td>
+                <td style="vertical-align: middle;">23.1</td>
+                <td style="vertical-align: middle;">27.5</td>
+                <td style="vertical-align: middle;">23.6</td>
+                <td style="vertical-align: middle;">58.4</td>
+                <td style="vertical-align: middle;">43.9</td>
+                <td style="vertical-align: middle;">40.3</td>
+                <td style="vertical-align: middle;">25.6</td>
+                <td style="vertical-align: middle;">31.1</td>
+                <td style="vertical-align: middle;">23.9</td>
+                <td style="vertical-align: middle;">26.9</td>
+                <td style="vertical-align: middle;"><b>39.6</b></td>
+                <td style="vertical-align: middle;">24.4</td>
+                <td style="vertical-align: middle;">28.9</td>
+                <td style="vertical-align: middle;">29.3</td>
+                <td style="vertical-align: middle;">25.5</td>
+                <td style="vertical-align: middle;">21.9</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/IVGSZ/Flash-VStream" class="ext-link" style="font-size: 16px; margin-left: 5px;">&#x2B50; Flash-Vstream
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">THU</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">7B</td>
+                <td style="vertical-align: middle;">31.2</td>
+                <td style="vertical-align: middle;">26.9</td>
+                <td style="vertical-align: middle;">37.6</td>
+                <td style="vertical-align: middle;">23.9</td>
+                <td style="vertical-align: middle;">60.1</td>
+                <td style="vertical-align: middle;">41.9</td>
+                <td style="vertical-align: middle;">40.0</td>
+                <td style="vertical-align: middle;">23.4</td>
+                <td style="vertical-align: middle;">35.3</td>
+                <td style="vertical-align: middle;">26.1</td>
+                <td style="vertical-align: middle;">24.7</td>
+                <td style="vertical-align: middle;">28.8</td>
+                <td style="vertical-align: middle;">27.0</td>
+                <td style="vertical-align: middle;">21.4</td>
+                <td style="vertical-align: middle;">29.8</td>
+                <td style="vertical-align: middle;">25.6</td>
+                <td style="vertical-align: middle;">26.8</td>          
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;"></td>
+                <td style="text-align: left; padding: 2px 10px;"><b class=""><a href="https://github.com/MCG-NJU/VideoChat-Online" class="ext-link" style="font-size: 16px; margin-left: 5px;">&#x2B50; VideoChat-Online
+                  <p style="font-size: 12px; margin-left: 5px; color: #858383;">Ours</p>
+                </a></b></td>
+                <td style="vertical-align: middle;">4B</td>
+                <td style="vertical-align: middle;"><b>54.9</b></td>
+                <td style="vertical-align: middle;">64.1</td>
+                <td style="vertical-align: middle;">59.7</td>
+                <td style="vertical-align: middle;">16.6</td>
+                <td style="vertical-align: middle;">63.1</td>
+                <td style="vertical-align: middle;">58.3</td>
+                <td style="vertical-align: middle;"><b>62.8</b></td>
+                <td style="vertical-align: middle;"><b>42.2</b></td>
+                <td style="vertical-align: middle;">54.4</td>
+                <td style="vertical-align: middle;">70.6</td>
+                <td style="vertical-align: middle;"><b>54.1</b></td>
+                <td style="vertical-align: middle;">24.8</td>
+                <td style="vertical-align: middle;">88.7</td>
+                <td style="vertical-align: middle;">48.5</td>
+                <td style="vertical-align: middle;">73.0</td>
+                <td style="vertical-align: middle;">25.9</td>
+                <td style="vertical-align: middle;"><b>71.7</b></td>
+  
+              </tr>
+
+          </tbody>                                                   
+        </table> 
+
+        <p style="margin-top: -20px;">
+          <strong style="font-size: 18px;" >&#x2B50;</strong>: indicates the input is streaming video  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          -: indicates "unknown" for closed-source models
+        </p>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DATASET SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mathvista_other">
+    <span class="mathvista_other" style="vertical-align: middle">Benchmark</span>
+  </h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths" style="width: 100%;">
+        <h2 class="title is-3">Data Examples</h2>
+        <div class="content has-text-justified">
+          <!-- <p style="text-align: center;", class="mt-3"><strong>See the <a href="index.explorer">VideoChat-Online Explorer</a> for more videos and human-annotated/model-generated descriptions.</strong>
+          </p> -->
+
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item">
+            <div style="text-align: center;">
+              <video src="static/videos/work.mp4"  width="55%" controls style="margin-bottom: 30px;">
+              </video>
+              <!-- <p class="video-title">Video Categorie: Temporal grounding</p>  -->
+            </div>
+            <div class="answer-text">
+              <p>
+                <strong style="color: #ec9720;">(t=18.4s) User:</strong>When did the person start working on her laptop? If it's ongoing, format the response as: <b>&lt;start time&gt; - now (duration: &lt;x&gt; seconds)</b>. If it's over, format the response as: <b>&lt;start time&gt; - &lt;end time&gt; (duration: &lt;x&gt; seconds)</b>. 
+                <br>               
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> The person started working on her laptop at 10.0s and is still working on it now (duration: 8.4 seconds).
+              </p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div style="text-align: center;">
+              <video src="static/videos/food.mp4"  width="70%" controls style="margin-bottom: 30px;">
+              </video>
+              <!-- <p class="video-title">Video Categorie: xxx</p>  -->
+            </div>
+            <div class="answer-text">
+              <p>
+                <strong style="color: #ec9720;">(t=25.0s) User:</strong> How many ingredients are shown in the past 15 seconds?
+                <br>
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> Five ingredients are shown in the past 15 seconds.
+              </p>
+            </div>
+          </div>
+
+          <div class="item">
+            <div style="text-align: center;">
+              <video src="static/videos/dumplings.mp4"  width="60%" controls style="margin-bottom: 30px;">
+              </video>
+              <!-- <p class="video-title">Video Categorie: Dense captioning</p>  -->
+            </div>
+            <div class="answer-text">
+              <p></p>
+                <strong style="color: #ec9720;">(t=83.3s) User:</strong> Summarize the events in details that ended up to the current frame and were not mentioned in earlier responses. For each event, include the duration. Format your response as: <b>&lt;start time&gt; - &lt;end time&gt; (duration: &lt;x&gt; seconds), &lt;description&gt;</b>. 
+                <br>               
+                <strong style="color: #008AD7;">(t=83.3s) VideoChat-Online:</strong> 54s - 70s (duration: 16.0 seconds), add flour salt and oil to a bowl.
+                <br>
+                71s - 83s (duration: 12.0 seconds), mix the ingredients together.
+                <br>       
+                <strong style="color: #008AD7;">(t=138.8s) VideoChat-Online:</strong> 84s - 100s (duration: 16.0 seconds), add water to the bowl and mix.
+                <br>
+                101s - 130s (duration: 29.0 seconds), knead the dough.
+                <br>
+                <strong style="color: #008AD7;">(t=194.4s) VideoChat-Online:</strong> 131s - 180s (duration: 49.0 seconds), cover the dough and let it rest.
+                <br>
+                <strong style="color: #008AD7;">(t=286.9s) VideoChat-Online:</strong> 181s - 290s (duration: 109.0 seconds), roll the dough out and cut into pieces.
+                <br>         
+                <strong style="color: #008AD7;">(t=330.1s) VideoChat-Online:</strong> 291s - 334s (duration: 43.0 seconds), fry the dough in oil.
+              </p>
+              <!-- <p>
+                <strong style="color: #ec9720;">User (Question at 83.3s):</strong> Summarize the events in details that ended up to the current frame and were not mentioned in earlier responses. For each event, include the duration. Format your response as: <b>&lt;start time&gt; - &lt;end time&gt; (duration: &lt;x&gt; seconds), &lt;description&gt;</b>. 
+                <br>               
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> 54s - 70s (duration: 16.0 seconds), add flour salt and oil to a bowl.
+                <br>
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> 71s - 83s (duration: 12.0 seconds), mix the ingredients together.
+              </p>  
+              <p>
+                <strong style="color: #ec9720;">User (Question at 138.8s):</strong>  &lt;None&gt;     
+                <br>       
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> 84s - 100s (duration: 16.0 seconds), add water to the bowl and mix.
+                <br>
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> 101s - 130s (duration: 29.0 seconds), knead the dough.
+              </p>
+              <p>
+                <strong style="color: #ec9720;">User (Question at 194.4s):</strong>  &lt;None&gt;
+                <br>
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> 131s - 180s (duration: 49.0 seconds), cover the dough and let it rest.
+              </p>
+              <p>
+                <strong style="color: #ec9720;">User (Question at 286.9s):</strong>  &lt;None&gt;
+                <br>
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> 181s - 290s (duration: 109.0 seconds), roll the dough out and cut into pieces.
+              </p>  
+              <p>
+                <strong style="color: #ec9720;">User (Question at 330.1s):</strong>  &lt;None&gt;   
+                <br>         
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> 291s - 334s (duration: 43.0 seconds), fry the dough in oil.
+              </p> -->
+            </div>
+          </div>
+
+          <div class="item">
+            <div style="text-align: center;">
+              <video src="static/videos/hiddenObject.mp4"  width="70%" controls style="margin-bottom: 30px;">
+              </video>
+              <!-- <p class="video-title">Video Categorie: xxx</p>  -->
+            </div>
+            <div class="answer-text">
+              <p>
+                <strong style="color: #ec9720;">(t=end of the video) User:</strong> The person uses multiple similar objects to play an occlusion game. Where is the hidden object currently from the person's point of view (left, middle or right)?
+                <br>
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> The hidden object is currently in the middle from the person's point of view.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="item">
+            <div style="text-align: center;">
+              <video src="static/videos/run.mp4"  width="30%" controls style="margin-bottom: 30px;">
+              </video>
+              <!-- <p class="video-title">Video Categorie: Temporal grounding</p>  -->
+            </div>
+            
+            <div class="answer-text">
+              <p>
+                <strong style="color: #ec9720;">(t=11.7s) User:</strong>When did the person runs through the doorway? If it's ongoing, format the response as: <b>&lt;start time&gt; - now (duration: &lt;x&gt; seconds)</b>. If it's over, format the response as: <b>&lt;start time&gt; - &lt;end time&gt; (duration: &lt;x&gt; seconds)</b>. 
+                <br>               
+                <strong style="color: #008AD7;">VideoChat-Online:</strong> The person runs through the doorway from 0.0s to 2.9s (duration: 2.9 seconds).
+              </p>
+            </div>
+          </div>
+        </div> 
+    </div>     
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <h2 class="title is-3">Generation Pipeline of OVBench</h2>
+          <img src="static/images/generation_pipeline.png" alt="data-composition" style="max-width: 60%;"/>
+          <p style="text-align: center; margin-left: auto; margin-right: auto; width: 80%;" >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- RESULTS SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other">Model Architecture</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <!-- <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content"> -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths" style="width: 100%;">
+        <h2 class="title is-3">Pyramid Memory Bank Architecture</h2>
+        <div class="content has-text-justified">
+          An illustration of the model's inference process with the pyramid memory bank structure. m<sub>main</sub> queues maintain balanced spatiotemporal information at different hierarchical levels,  m<sub>t</sub> is a high-frequency sampling queue for enhanced temporal detail preservation, and m<sub>s</sub> queue is for spatial detail retention. The system supports simultaneous frame input to both the memory bank and KVCache, with synchronization mechanisms for maintaining consistency during memory modifications.
+        </div>
+        <div class="box m-5">
+          <div class="content has-text-centered">
+            <img src="static/images/memory.png" alt="grade-lv" width="80%"/>
+            <!-- <p>The AutoDQ workflow.</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</section>
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+    <h1 class="title is-1 mathvista_other" id="citation">Citation</h1>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <pre><code>
+@article{huang2024online,
+  title={Online Video Understanding: OVBench and VideoChat-Online},
+  author={Huang, Zhenpeng and Li, Xinhao and Li, Jiaqi and Wang, Jing and Zeng, Xiangyu and Liang, Cheng and Wu, Tao and Chen, Xi and Li, Liang and Wang, Limin},
+  journal={arXiv preprint arXiv:2501.00584},
+  year={2024}
+}
+</code></pre>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container" style="width: 60%;">
+  <style>
+      pre {
+        background-color: #f4f4f4;
+        padding: 5px; /* 调整padding为5px */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow-x: auto; /* 允许水平滚动 */
+    }
+    code {
+        font-family: Consolas, "Courier New", monospace;
+        color: #d63384; /* 代码文本颜色 */
+    }
+  </style>
+
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p style="text-align: center;">
+            This website is adapted from <a href="https://video-mme.github.io/">Video-MME</a>, licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</footer>
+
+</body>
+</html>
+
